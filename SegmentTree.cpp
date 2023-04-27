@@ -25,24 +25,19 @@ int getAns(int l,int r,int qs,int qe,int id)
     int y=getAns(mid+1,r,max(mid+1,qs),qe,2*id+2);
     return max(x,y);
 }
-void update(int id,int l,int r,int re,char a,char b)
+void update(int id,int l , int r , int pos , int newVal)
 {
-    if(l==r && l==re)
-    {
-        if(a=='a') tt[id].a--;
-        else if(a=='b') tt[id].b--;
-        else tt[id].c--;
-        if(b=='a') tt[id].a++;
-        else if(b=='b') tt[id].b++;
-        else tt[id].c++;
-        return;
+    if(l == r){
+        tt[id] = newVal ;
+        return ;
+    }    
+    int mid = (l + r)/2 ;
+    if(pos <= mid){
+        update(2*id + 1 , l , mid , pos , newVal);
+    }else{
+        update(2*id + 2 , mid + 1 , r , pos , newVal);
     }
-    if(l>re || r<re) return;
-    int mid=(l+r)/2;
-    update(2*id + 1,l,mid,re,a,b);
-    update(2*id + 2,mid+1,r,re,a,b);
-    tt[id].a=tt[2*id +1].a + tt[2*id +2].a;
-    tt[id].b=tt[2*id +1].b + tt[2*id +2].b;
-    tt[id].c=tt[2*id +1].c + tt[2*id +2].c;
-    return;
+    
+    tt[id] = min(tt[2*id + 1] , tt[2*id + 2]);    
+    return;    
 }
