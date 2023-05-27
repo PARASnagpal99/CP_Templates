@@ -15,6 +15,10 @@ void seive(){
 vector<int> lowestPrime(N,N) ;
 void seiveLPF(){
     isPrime[0] = isPrime[1] = false ;
+     int n = isPrime.size();
+    for(int i=0 ; i<n ; ++i){
+        lowestPrime[i] = i ;
+    }
      for(int i = 2 ; i < N ; ++i){
          if(isPrime[i]){
              for(int j = i*i ; j < N ; j+=i){
