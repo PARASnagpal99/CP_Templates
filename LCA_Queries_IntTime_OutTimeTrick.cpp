@@ -27,7 +27,7 @@ int LCA(int a , int b , vector<vector<int>>&parents){
 
     for(int k=log2(n) + 1 ; k >= 0 ; k--){
         int parent_a = parents[k][a];
-        if(!isAncestor(parent_a,b)){
+        if(parent_a!=-1 && !isAncestor(parent_a,b)){
             a = parent_a ;
         }
     }
