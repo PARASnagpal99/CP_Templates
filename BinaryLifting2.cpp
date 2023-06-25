@@ -4,7 +4,7 @@ int kthParent(int x, int k, vector<vector<int>>& parents){
     for(int i = 0; i <= log2(n); i++){
         if(k & (1 << i)){
             x = parents[i][x];
-            if(x == -2)
+            if(x == -1)
                 break;
         }
     }
